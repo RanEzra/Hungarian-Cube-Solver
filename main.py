@@ -3,11 +3,11 @@ from random import randint, random
 from copy import deepcopy
 RUNS = 1
 POP_SIZE = 100  # population size
-INDIVIDUAL_SIZE = 40 # represents the amount of the allowed actions
+INDIVIDUAL_SIZE = 150 # represents the amount of the allowed actions
 GENERATIONS = 100 # maximal number of generations to run evolution
 TOURNAMENT_SIZE = 10  # size of tournament for tournament selection
 MUTATION_PROB = 0.1 # the probability to make a mutation on each cell
-RANDOMIZATION_LEVEL = 50
+RANDOMIZATION_LEVEL = 20
 RANDOM_SEARCH_COMPARE = False
 FULL_RANDOM = True
 CUBE_DETAILS = True
@@ -486,7 +486,7 @@ def fitness(c, moves):
     return best
 
 def selection(population,fitnesses):
-    tournament = [randint(0, len(population)-1) for i in range(TOURNAMENT_SIZE)] # select tournament contenders
+    tournament = [randint(0, POP_SIZE-1) for i in range(TOURNAMENT_SIZE)] # select tournament contenders
     tournament_fitnesses = [fitnesses[tournament[i]] for i in range(TOURNAMENT_SIZE)]
     return deepcopy(population[tournament[tournament_fitnesses.index(max(tournament_fitnesses))]])
 
